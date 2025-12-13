@@ -40,6 +40,7 @@ function App() {
 
   async function getProfile() {
     try {
+      
       setLoading(true)
       const { user } = session
       const { data, error, status } = await supabase
