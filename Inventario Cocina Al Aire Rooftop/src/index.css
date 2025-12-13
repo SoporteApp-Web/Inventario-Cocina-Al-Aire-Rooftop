@@ -1,0 +1,960 @@
+/* --- Reset Básico para el Navegador --- */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Aplicamos la nueva fuente globalmente */
+}
+
+/* --- Estilos para el Login --- */
+
+/* Contenedor principal que ocupa toda la pantalla */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Volvemos a centrar */
+  min-height: 100vh;
+  background: #f0f2f5; /* Un gris claro y limpio */
+  padding: 20px 15px; /* Dejamos solo padding para los lados y un poco vertical para scroll */
+}
+
+/* La caja del formulario con animación */
+.auth-box {
+  margin: auto 0; /* Margen automático vertical para un centrado inteligente */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Animación para que la caja aparezca desde abajo */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  object-fit: contain; /* Asegura que la imagen se vea bien sin deformarse */
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1c1e21;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #606770;
+  margin-bottom: 30px;
+}
+
+/* Contenedor para el input y el icono */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Icono dentro del input */
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #adb5bd; /* Un gris suave para el icono */
+}
+
+/* Campo de texto */
+.input-field {
+  width: 100%;
+  padding: 15px 15px 15px 45px; /* Padding izquierdo para el icono */
+  border: 1px solid #dddfe2;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #1877f2; /* Un azul para el foco, puedes cambiarlo */
+  box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+/* Botón de acceso */
+.auth-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a9d8f; /* Un color verde azulado, profesional */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.auth-button:hover:not(:disabled) {
+  background-color: #268a7e; /* Un poco más oscuro al pasar el mouse */
+}
+
+.auth-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.auth-button:disabled {
+  background-color: #a5d8d2;
+  cursor: not-allowed;
+}
+
+/* Contenedor para el enlace de cambio de modo */
+.auth-toggle {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+/* Botón/enlace para cambiar entre login y registro */
+.auth-toggle-button {
+  background: none;
+  border: none;
+  color: #2a9d8f; /* Mismo color que el botón principal */
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px;
+  text-decoration: none;
+}
+
+/* Botón para mostrar/ocultar contraseña */
+.password-toggle-button {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #adb5bd;
+}
+
+/* Grid para el formulario de registro de dos columnas */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea dos columnas de igual tamaño */
+  gap: 0 15px; /* Espacio de 15px entre columnas, 0 entre filas */
+}
+
+/* Anula el margen inferior de los wrappers dentro del grid para un mejor control */
+.form-grid .input-wrapper {
+  margin-bottom: 20px;
+}
+
+/* Clase de utilidad para que un elemento ocupe las dos columnas */
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+
+/* --- Estilos para el Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 15px;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  animation: slide-up 0.3s ease-out;
+}
+
+.modal-title {
+  margin-top: 0;
+  color: #2a9d8f;
+  font-size: 1.5rem;
+}
+
+.modal-message {
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #606770;
+}
+
+.modal-close-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a9d8f;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-close-button:hover {
+  background-color: #268a7e;
+}
+
+/* --- Estilos para el Layout del Dashboard --- */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+/* --- Header --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
+.header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-user-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 16px;
+  font-weight: 500;
+}
+
+.logout-button {
+  background: none;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  background-color: #001529;
+  color: rgba(255, 255, 255, 0.65);
+  transition: width 0.3s ease;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-nav li a:hover {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.sidebar-nav li a svg {
+  font-size: 1.2rem;
+  margin-right: 16px;
+  min-width: 32px;
+}
+
+.sidebar.collapsed .sidebar-nav li a span {
+  display: none;
+}
+
+/* --- Body y Footer --- */
+.app-body {
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  color: #888;
+  background-color: #f0f2f5;
+}
+
+/* --- Estilos para la Página de Inventario --- */
+.inventory-container {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.inventory-table th,
+.inventory-table td {
+  border: 1px solid #e8e8e8;
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.inventory-table thead {
+  background-color: #fafafa;
+}
+
+.inventory-table th {
+  font-weight: 600;
+  color: #333;
+}
+
+.inventory-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table-input {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.responsable-cell {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.responsable-cell span {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.actions-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 5px;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.action-button.edit-button {
+  color: #1890ff;
+}
+
+.action-button.edit-button:hover {
+  background-color: #e6f7ff;
+}
+
+.action-button.delete-button {
+  color: #ff4d4f;
+}
+
+.action-button.delete-button:hover {
+  background-color: #fff1f0;
+}
+
+/* --- Estilos para la Tarjeta de Movimientos --- */
+.movement-card {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-top: 30px;
+}
+
+.movement-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.movement-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group select,
+.form-group input {
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.movement-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1890ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 42px; /* Alinear con los inputs */
+}
+
+.movement-button:hover:not(:disabled) {
+  background-color: #40a9ff;
+}
+
+.movement-button:disabled {
+  background-color: #b6d4fa;
+  cursor: not-allowed;
+}
+
+/* --- Estilos para el Header de Inventario y Modal de Agregar --- */
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inventory-header h1 {
+  margin: 0;
+}
+
+.add-product-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #28a745; /* Verde para agregar */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-product-button:hover {
+  background-color: #218838;
+}
+
+.modal-form {
+  text-align: left;
+}
+
+.modal-form .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.modal-button-cancel,
+.modal-button-confirm {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-button-cancel {
+  background-color: #f0f2f5;
+  border: 1px solid #d9d9d9;
+  color: #333;
+}
+
+.modal-button-confirm {
+  background-color: #1890ff;
+  border: 1px solid #1890ff;
+  color: white;
+}
+
+/* Modificador para modales más anchos */
+.modal-content.modal-lg {
+  max-width: 600px;
+  text-align: left; /* Alinea el contenido del modal a la izquierda */
+}
+
+/* --- Estilos para el Modal de Borrado --- */
+.modal-title-danger {
+  color: #ff4d4f;
+}
+
+.modal-message strong {
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-button-danger {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #ff4d4f;
+  border: 1px solid #ff4d4f;
+  color: white;
+  transition: all 0.3s;
+}
+
+/* --- Estilos para el Autocompletado --- */
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f2f5;
+}
+
+/* --- Estilos para la Búsqueda en Inventario --- */
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* --- Estilos para Acciones Globales de Inventario --- */
+.inventory-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.action-btn.save {
+  background-color: #28a745;
+  color: white;
+}
+
+.action-btn.review {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.action-btn.download {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.action-btn:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.movement-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.movement-fieldset:disabled {
+  opacity: 0.6;
+}
+
+/* --- Estilos para Modal de Descarga --- */
+.download-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.download-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  width: 150px;
+}
+
+.download-option-btn svg {
+  font-size: 2.5rem;
+}
+
+.download-option-btn.pdf { color: #dc3545; }
+.download-option-btn.image { color: #007bff; }
+
+/* Footer para la descarga de imagen */
+.download-footer {
+  padding: 10px;
+  margin-top: 10px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+/* Contenedor temporal para la generación de la imagen del reporte */
+.report-image-container {
+  position: absolute;
+  left: -9999px; /* Mueve el contenedor fuera de la pantalla */
+  top: auto;
+  width: 800px; /* Un ancho fijo para consistencia */
+  background: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.report-image-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* --- Estilos para la Página de Reportes --- */
+.report-container {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.report-container h4 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.report-button {
+  padding: 12px;
+  text-align: left;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.report-button:hover {
+  background-color: #e9ecef;
+}
+
+/* --- Estilos Adicionales para Página de Reportes --- */
+.stock-alert-section {
+  margin-bottom: 40px;
+}
+
+.saved-reports-section h4,
+.stock-alert-section h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.status-dot::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.low-stock { color: #ff4d4f; }
+.status-dot.low-stock::before { background-color: #ff4d4f; }
+
+.status-dot.over-stock { color: #faad14; }
+.status-dot.over-stock::before { background-color: #faad14; }
+
+.status-dot.ok-stock { color: #52c41a; }
+.status-dot.ok-stock::before { background-color: #52c41a; }
+
+/* --- Estilos para Modal de Guardar Reporte --- */
+.save-report-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.save-report-body label {
+  font-weight: 500;
+}
+
+.save-report-body input[type="date"] {
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- Estilos para la Sección de Gráficos --- */
+.chart-section {
+  margin-top: 40px; /* Separación de la sección de alertas */
+}
+
+.chart-actions {
+  display: flex;
+  gap: 15px; /* Aumentamos el espacio entre los botones */
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-top: 20px; /* Espacio entre la lista de botones y el gráfico */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #888;
+}
+
+/* --- Estilos para resaltar fechas en DatePicker --- */
+.react-datepicker__day--highlighted {
+  background-color: #28a745; /* Verde */
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.react-datepicker__day--highlighted:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
+  color: white;
+}
+
+.error-message {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* --- Estilos para la Página de Configuración --- */
+.config-container {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.profile-edit-section {
+  text-align: center;
+  padding: 40px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+}
+
+.edit-profile-btn {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-admin-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.role-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.role-management-header h4 {
+  margin: 0;
+}
+
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.permission-item label {
+  font-weight: normal;
+}
